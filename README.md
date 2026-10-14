@@ -1,8 +1,8 @@
 # RAD website
 
-A static research-project website for **Reward-Aligned Distillation (RAD)**,
-prepared for a GitHub repository named `rad`. The site uses plain HTML and CSS,
-with no build step or external dependencies.
+A static research-project website for **Reward-Aligned Distillation (RAD)**.
+The source repository is [yilanchen6/rad-website](https://github.com/yilanchen6/rad-website).
+The site uses plain HTML and CSS, with no build step or external dependencies.
 
 ## Preview locally
 
@@ -32,8 +32,9 @@ Add approved paper, code, and author links before publication.
 
 ## GitHub Pages
 
-Place these website files at the root of the `rad` repository. After pushing,
-configure GitHub Pages to deploy from the repository's default branch and root
+These website files belong at the root of the `rad-website` repository. After
+pushing, configure GitHub Pages to deploy from the `main` branch and root
 directory. The `.nojekyll` file allows the static files to be served directly.
 
-The GitHub repository has not been created, and the website has not been deployed.
+Once GitHub Pages is enabled, the default website URL will be
+`https://yilanchen6.github.io/rad-website/`.
