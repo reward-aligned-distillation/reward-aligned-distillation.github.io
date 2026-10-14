@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Reward-Aligned Distillation (RAD) weights teacher supervision by its predicted effect on task reward, improving mathematical reasoning and code generation.">
+    <meta name="theme-color" content="#b8322b">
+    <title>RAD — Reward-Aligned Distillation</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap">
+      <a class="wordmark" href="#" aria-label="RAD home">RAD<span aria-hidden="true">.</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#results">Results</a>
+        <a href="#method">Method</a>
+        <a href="#abstract">Abstract</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero wrap" aria-labelledby="title">
+        <p class="eyebrow">Mathematical reasoning &amp; code generation</p>
+        <h1 id="title">Reward-Aligned<br><span>Distillation</span></h1>
+        <p class="hero-lead">Teacher supervision, guided by task reward.</p>
+        <p class="hero-description">RAD weights each token's distillation signal according to whether it is predicted to improve the student's reward after an update.</p>
+        <a class="text-link" href="#results">Explore the results <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section id="results" class="results wrap" aria-labelledby="results-title">
+        <div class="section-heading">
+          <p class="eyebrow">01 / Results</p>
+          <h2 id="results-title">Stronger reasoning.<br>Across model families.</h2>
+          <p>At a matched training-response budget, RAD improves mathematical reasoning and code generation over the strongest compared baselines.</p>
+        </div>
+        <div class="metrics" aria-label="Selected paper results">
+          <div class="metric">
+            <p class="metric-value">54.69<span>%</span></p>
+            <h3>Qwen3-1.7B</h3>
+            <p>Non-thinking · LiveCodeBench-v6 pass@1</p>
+          </div>
+          <div class="metric">
+            <p class="metric-value">58.67<span>%</span></p>
+            <h3>OLMo3-7B-Instruct</h3>
+            <p>LiveCodeBench-v6 pass@1</p>
+          </div>
+          <div class="metric">
+            <p class="metric-value">+6.5<span>pp</span></p>
+            <h3>Competition mathematics</h3>
+            <p>Mean gain over the strongest baseline · Qwen3-1.7B (non-thinking)</p>
+          </div>
+        </div>
+        <figure class="results-figure">
+          <img src="assets/main-results.png" alt="Paper results comparing RAD with other methods. Qwen3-1.7B RAD improves both math and coding accuracy. LiveCodeBench-v6 pass@1 is 54.69 percent for Qwen3-1.7B and 58.67 percent for OLMo3-7B-Instruct, gains of 8.72 and 6.40 percentage points over their strongest baselines." width="1580" height="697" loading="lazy">
+          <figcaption><strong>Results from the paper.</strong> RAD at 100 updates versus baselines at 200, with matched training-response budgets. Left: math and coding accuracy for Qwen3-1.7B (non-thinking). Right: LiveCodeBench-v6 pass@1 for Qwen3-1.7B (non-thinking) and OLMo3-7B-Instruct. Gray bars show the strongest baselines, RLAD and GRPO, respectively; dashed lines mark the corresponding teachers.</figcaption>
+        </figure>
+      </section>
+
+      <section id="method" class="method" aria-labelledby="method-title">
+        <div class="wrap method-layout">
+          <div class="section-heading">
+            <p class="eyebrow">02 / Method</p>
+            <h2 id="method-title">A reward signal<br>for every token.</h2>
+            <p>Standard on-policy distillation applies teacher supervision to every token. RAD asks how each contribution affects the student's task reward.</p>
+          </div>
+          <ol class="method-steps">
+            <li><h3>Look ahead</h3><p>Take a temporary optimizer step to predict how distillation changes the student.</p></li>
+            <li><h3>Score the supervision</h3><p>Differentiate through that step to estimate each token's effect on post-update reward.</p></li>
+            <li><h3>Align the update</h3><p>Update token weights by projected ascent, allowing individual distillation-gradient contributions to be strengthened, suppressed, or reversed.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="abstract" class="abstract wrap" aria-labelledby="abstract-title">
+        <p class="eyebrow">03 / Abstract</p>
+        <h2 id="abstract-title">Reward-aligned learning<br>from a stronger teacher.</h2>
+        <p>Reinforcement learning with verifiable rewards improves the reasoning capabilities of large language models, but remains computationally expensive and sample inefficient. On-policy distillation provides dense token-level supervision from a stronger teacher, yet the teacher's preference does not necessarily improve task reward.</p>
+        <p>Reward-Aligned Distillation is a bilevel framework that weights distillation signals based on their predicted effect on the student's post-update reward. It differentiates through a temporary optimizer step, then updates token weights by projected ascent. Experiments on six competition-math benchmarks and LiveCodeBench-v6 support reward-guided weighting across model families and tasks.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer wrap">
+      <p><strong>RAD</strong> · Reward-Aligned Distillation</p>
+      <a href="#title">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+  </body>
+</html>
