@@ -3,8 +3,8 @@
 The static project website for **Reward-Aligned Distillation (RAD)**.
 
 - Paper: <https://arxiv.org/abs/2610.14572>
-- Website: <https://yilanchen6.github.io/rad-website/>
-- Source: <https://github.com/yilanchen6/rad-website>
+- Website: <https://reward-aligned-distillation.github.io/>
+- Source: <https://github.com/reward-aligned-distillation/reward-aligned-distillation.github.io>
 
 The site uses HTML, CSS, and vanilla JavaScript. It has no build step or external
 runtime dependencies. Open the local repository as a dedicated website project.
@@ -63,5 +63,5 @@ its own paper and supplied materials.
 ## GitHub Pages
 
 Serve these files from the `main` branch and repository root. The `.nojekyll`
-file keeps the site buildless. All local asset paths are relative, so they work
-at the `/rad-website/` project prefix.
+file keeps the site buildless. All local asset paths are relative and work at
+the organization site's root URL.
