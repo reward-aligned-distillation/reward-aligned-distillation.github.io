@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs><pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0V80" fill="none" stroke="#dfdbd2" stroke-width="1"/></pattern><linearGradient id="wash" x2="1" y2="1"><stop stop-color="#f5f2ec"/><stop offset="1" stop-color="#ede7dd"/></linearGradient></defs>
+  <rect width="1920" height="1080" fill="url(#wash)"/><rect width="1920" height="1080" fill="url(#grid)"/>
+  <rect x="100" y="100" width="1720" height="880" rx="25" fill="#faf9f6" stroke="#ded8cc" stroke-width="2"/>
+  <text x="175" y="212" font-family="Arial, sans-serif" font-size="35" font-weight="700" fill="#b8322b" letter-spacing="5">RAD · EXPLAINER</text>
+  <text x="175" y="400" font-family="Arial, sans-serif" font-size="107" font-weight="700" fill="#24231f" letter-spacing="-5">Reward-Aligned</text>
+  <text x="175" y="525" font-family="Arial, sans-serif" font-size="107" font-weight="700" fill="#b8322b" letter-spacing="-5">Distillation</text>
+  <text x="180" y="645" font-family="Arial, sans-serif" font-size="36" fill="#68645c">Teacher supervision, guided by task reward.</text>
+  <path d="M1200 660h440" stroke="#d8d2c8" stroke-width="3"/>
+  <rect x="1240" y="517" width="40" height="143" rx="5" fill="#3d7567"/><rect x="1320" y="408" width="40" height="252" rx="5" fill="#3d7567"/><rect x="1400" y="660" width="40" height="133" rx="5" fill="#b8322b"/><rect x="1480" y="477" width="40" height="183" rx="5" fill="#3d7567"/><rect x="1560" y="603" width="40" height="57" rx="5" fill="#3d7567"/>
+  <circle cx="1430" cy="328" r="63" fill="#b8322b"/><path d="m1416 299 43 29-43 29z" fill="white"/>
+  <text x="180" y="865" font-family="Arial, sans-serif" font-size="28" fill="#68645c">A three-minute introduction to reward-guided token weighting</text>
+  <text x="1665" y="867" font-family="Arial, sans-serif" font-size="28" fill="#68645c" text-anchor="end">3:02</text>
+</svg>

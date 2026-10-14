@@ -1,40 +1,69 @@
 # RAD website
 
-A static research-project website for **Reward-Aligned Distillation (RAD)**.
-The source repository is [yilanchen6/rad-website](https://github.com/yilanchen6/rad-website).
-The site uses plain HTML and CSS, with no build step or external dependencies.
+The static project website for **Reward-Aligned Distillation (RAD)**.
+
+- Paper: <https://arxiv.org/abs/2610.14572>
+- Website: <https://yilanchen6.github.io/rad-website/>
+- Source: <https://github.com/yilanchen6/rad-website>
+
+The site uses HTML, CSS, and vanilla JavaScript. It has no build step or external
+runtime dependencies. Open the local repository as a dedicated website project.
 
 ## Preview locally
-
-From this directory:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Open `http://localhost:8000`. Stop the preview with Ctrl+C.
+Open `http://localhost:8000`. Stop the server with Ctrl+C.
 
 ## Content and provenance
 
-The page describes RAD using the current manuscript, `paper/rad_iclr2027.tex`.
-`assets/main-results.png` is an unchanged copy of the manuscript's
-`paper/figures/paper/main_results_overview_current.png`. These source paths
-are relative to the parent RAD research checkout; the manuscript is not
-included in this standalone website repository.
+The displayed scores match Tables 1, 8, and 11 of arXiv:2610.14572v1 and the
+current paper snapshots in the parent RAD research checkout. The source paths
+below are relative to that research checkout; the manuscript is not bundled in
+this standalone website repository.
 
-The headline comparison uses RAD at 100 updates and baselines at 200 updates,
-with matched training-response budgets. Coding results are LiveCodeBench-v6
-pass@1 for Qwen3-1.7B (non-thinking) and OLMo3-7B-Instruct. The 6.5 percentage
-point math gain is the Qwen3-1.7B mean across six competition-math benchmarks.
+The displayed author order and BibTeX follow the paper PDF.
 
-Keep the page and figure synchronized with the manuscript when results change.
-Add approved paper, code, and author links before publication.
+| Website asset | Original source |
+| --- | --- |
+| `assets/main-results.png` | `paper/figures/paper/main_results_overview_current.png` |
+| `assets/math-training.png` | `paper/figures/paper/math_eval_dynamics.png` |
+| `assets/coding-results.png` | `paper/figures/paper/coding_results_bars.png` |
+| `assets/RAD_explainer_v2.mp4` | User-supplied RAD explainer, preserved unchanged |
+
+The main comparison counts 102,400 generated training responses, including RAD's
+meta responses. RAD uses 100 updates; baselines and RAD-Simple use 200. Math table
+means average six benchmarks, while the math training curves average four.
+Standard deviations describe sampled response positions, not training seeds.
+Timing totals include checkpoint saves and exclude validation, startup, and
+downtime; ExOPD's math total is a lower bound with one missing step timer.
+
+The explainer video is H.264/AAC, 1920×1080, about 3:02, with fast-start MP4
+metadata. The player uses native controls, inline playback, metadata preloading,
+a vector poster, and a download fallback.
+
+## Interactive method
+
+`method.js` implements an educational illustration of zero-origin signed token
+weighting: `w = clip(γ I, −1, +1)`. Visitors can compare uniform OPD with RAD,
+change the illustrative weight step size, inspect a token, and walk through the
+five stages of a training iteration. The numerical scores are explicitly
+illustrative; this component runs no language models or evaluations.
+
+`site.js` adds accessible result tabs and BibTeX copying. Without JavaScript, both
+result categories remain readable, the video works, and the method explanation
+has a static fallback. The supplied `Reward-Aligned Distillation.html` remains a
+local design reference and is preserved unchanged.
+
+The design takes inspiration from the research presentation at
+<https://self-distillation.github.io/SDPO> and
+<https://research.nvidia.com/labs/lpr/pivotopd/>. RAD's content and assets come from
+its own paper and supplied materials.
 
 ## GitHub Pages
 
-These website files belong at the root of the `rad-website` repository. After
-pushing, configure GitHub Pages to deploy from the `main` branch and root
-directory. The `.nojekyll` file allows the static files to be served directly.
-
-Once GitHub Pages is enabled, the default website URL will be
-`https://yilanchen6.github.io/rad-website/`.
+Serve these files from the `main` branch and repository root. The `.nojekyll`
+file keeps the site buildless. All local asset paths are relative, so they work
+at the `/rad-website/` project prefix.
