@@ -99,7 +99,7 @@
         </div>
 
         <article class="result-panel" id="math-results" aria-labelledby="math-title">
-          <div class="result-intro"><div><h3 id="math-title">Competition math</h3><p>Mean accuracy across six benchmarks: AIME24, AIME25, AIME26, HMMT2025-Feb, HMMT2025-Nov, and OlympiadBench.</p></div><span class="protocol-tag">16 responses / problem</span></div>
+          <div class="result-intro"><h3 id="math-title">Competition math</h3><p>Mean accuracy across six benchmarks: AIME24, AIME25, AIME26, HMMT2025-Feb, HMMT2025-Nov, and OlympiadBench.</p><span class="protocol-tag">16 responses / problem</span></div>
           <div class="table-scroll" tabindex="0" role="region" aria-label="Math results table">
             <table><caption>Mean accuracy (%), with sampled-response-position standard deviation.</caption><thead><tr><th scope="col">Student</th><th scope="col">Best baseline · 200 updates</th><th scope="col">RAD · 100 updates</th><th scope="col">RAD gain</th></tr></thead><tbody><tr><th scope="row">Qwen3-1.7B (non-thinking)</th><td><span class="table-method">ExOPD</span>32.59 <small>± 1.81</small></td><td class="rad-cell">39.07 <small>± 1.59</small></td><td class="gain-cell">+6.48 pp</td></tr><tr><th scope="row">Qwen3-4B-Instruct-2507</th><td><span class="table-method">GRPO</span>57.29 <small>± 1.72</small></td><td class="rad-cell">59.80 <small>± 2.07</small></td><td class="gain-cell">+2.51 pp</td></tr></tbody></table>
           </div>
@@ -107,7 +107,7 @@
           <figure class="paper-figure"><img src="assets/math-training.png" alt="Four-benchmark math learning curves comparing RAD, RAD-Simple, and baselines for Qwen3-1.7B (non-thinking) and Qwen3-4B-Instruct-2507." width="1680" height="816" loading="lazy"><figcaption><strong>Learning dynamics.</strong> These curves average AIME24/25 and HMMT2025-Feb/Nov: four benchmarks. The headline table above averages six. Checkpoints are shown as reported in the paper.</figcaption></figure>
         </article>
         <article class="result-panel" id="coding-results" aria-labelledby="coding-title">
-          <div class="result-intro"><div><h3 id="coding-title">Code generation</h3><p>LiveCodeBench-v6 pass@1 across 1,055 programming tasks: 322 easy, 383 medium, and 350 hard.</p></div><span class="protocol-tag">4 responses / task</span></div>
+          <div class="result-intro"><h3 id="coding-title">Code generation</h3><p>LiveCodeBench-v6 pass@1 across 1,055 programming tasks: 322 easy, 383 medium, and 350 hard.</p><span class="protocol-tag">4 responses / task</span></div>
           <div class="table-scroll" tabindex="0" role="region" aria-label="Coding results table">
             <table><caption>Pass@1 (%), with sampled-response-position standard deviation.</caption><thead><tr><th scope="col">Student</th><th scope="col">Best baseline · 200 updates</th><th scope="col">RAD · 100 updates</th><th scope="col">RAD gain</th></tr></thead><tbody><tr><th scope="row">Qwen3-1.7B (non-thinking)</th><td><span class="table-method">RLAD</span>45.97 <small>± 0.26</small></td><td class="rad-cell">54.69 <small>± 0.31</small></td><td class="gain-cell">+8.72 pp</td></tr><tr><th scope="row">OLMo3-7B-Instruct</th><td><span class="table-method">GRPO</span>52.27 <small>± 0.26</small></td><td class="rad-cell">58.67 <small>± 0.52</small></td><td class="gain-cell">+6.40 pp</td></tr></tbody></table>
           </div>

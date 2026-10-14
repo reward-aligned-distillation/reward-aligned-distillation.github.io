@@ -90,10 +90,10 @@ figcaption strong { color:var(--ink); font-weight:650; }
 .metric h3 { margin:0 0 3px; font-size:16px; }
 .metric > p:last-child { margin:0; color:var(--muted); font-size:13px; }
 .result-panel + .result-panel { margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
-.result-intro { display:flex; align-items:flex-start; justify-content:space-between; gap:30px; margin-bottom:23px; }
-.result-intro h3 { margin:0 0 7px; font-size:28px; font-weight:650; letter-spacing:-.025em; }
-.result-intro p { margin:0; max-width:720px; color:var(--muted); font-size:16px; }
-.protocol-tag { margin-top:4px; color:var(--muted); font-size:14px; white-space:nowrap; }
+.result-intro { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:7px 30px; margin-bottom:23px; }
+.result-intro h3 { margin:0; font-size:28px; font-weight:650; letter-spacing:-.025em; }
+.result-intro p { grid-column:1 / -1; margin:0; color:var(--muted); font-size:16px; }
+.protocol-tag { grid-column:2; grid-row:1; align-self:center; color:var(--muted); font-size:14px; white-space:nowrap; }
 .table-scroll { overflow-x:auto; background:white; }
 table { width:100%; border-collapse:collapse; text-align:left; font-size:15px; font-variant-numeric:tabular-nums; }
 caption { caption-side:bottom; padding:11px 17px; text-align:left; color:var(--muted); font-size:13px; }
@@ -178,9 +178,10 @@ td small { color:var(--muted); font-size:13.5px; font-weight:400; }
   .metric h3 { font-size:15px; }
   .metric > p:last-child { font-size:12px; }
   .result-panel + .result-panel { margin-top:32px; padding-top:28px; }
-  .result-intro { flex-direction:column; gap:10px; }
+  .result-intro { grid-template-columns:minmax(0,1fr); gap:10px; }
   .result-intro h3 { font-size:24px; }
   .result-intro p { font-size:15px; }
+  .protocol-tag { grid-column:1; grid-row:auto; }
   th,td { padding:13px; font-size:14px; }
   .simple-note { flex-direction:column; gap:5px; padding:10px 0; }
   .simple-note p { font-size:14px; }
