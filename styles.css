@@ -89,14 +89,9 @@ figcaption strong { color:var(--ink); font-weight:650; }
 .metric-value span { margin-left:4px; font-size:15px; letter-spacing:0; }
 .metric h3 { margin:0 0 3px; font-size:16px; }
 .metric > p:last-child { margin:0; color:var(--muted); font-size:13px; }
-.results-tabs { display:flex; gap:24px; border-bottom:1px solid var(--line); }
-.results-tabs button { display:flex; align-items:center; gap:12px; padding:11px 0; border:0; border-bottom:2px solid transparent; background:transparent; color:var(--muted); font-size:16px; font-weight:600; }
-.results-tabs button span { color:var(--muted); font-size:13px; font-weight:400; }
-.results-tabs button[aria-selected="true"] { border-bottom-color:var(--ink); color:var(--ink); }
-.results-tabs button[aria-selected="true"] span { color:var(--muted); }
-.result-panel { padding-top:28px; }
+.result-panel + .result-panel { margin-top:44px; padding-top:36px; border-top:1px solid var(--line); }
 .result-intro { display:flex; align-items:flex-start; justify-content:space-between; gap:30px; margin-bottom:23px; }
-.result-intro h3 { margin:0 0 7px; font-size:23px; font-weight:600; letter-spacing:-.025em; }
+.result-intro h3 { margin:0 0 7px; font-size:28px; font-weight:650; letter-spacing:-.025em; }
 .result-intro p { margin:0; max-width:720px; color:var(--muted); font-size:16px; }
 .protocol-tag { margin-top:4px; color:var(--muted); font-size:14px; white-space:nowrap; }
 .table-scroll { overflow-x:auto; background:white; }
@@ -108,7 +103,6 @@ tbody th { min-width:170px; font-weight:600; }
 tbody tr:last-child th,tbody tr:last-child td { border-bottom:0; }
 td { white-space:nowrap; }
 td small { color:var(--muted); font-size:13.5px; font-weight:400; }
-.table-sub { display:block; margin-top:2px; color:var(--muted); font-size:13px; font-weight:400; }
 .table-method { display:inline-block; min-width:53px; margin-right:8px; color:var(--muted); font-size:13px; }
 .rad-cell { color:var(--accent); background:#fdf3ef; font-weight:750; }
 .gain-cell { color:var(--positive); font-weight:650; }
@@ -183,11 +177,9 @@ td small { color:var(--muted); font-size:13.5px; font-weight:400; }
   .metric-domain { font-size:13px; margin-bottom:10px; }
   .metric h3 { font-size:15px; }
   .metric > p:last-child { font-size:12px; }
-  .results-tabs { gap:7px; }
-  .results-tabs button { flex:1; flex-direction:column; align-items:flex-start; gap:2px; padding:10px 0; font-size:15px; }
-  .results-tabs button span { font-size:12px; }
+  .result-panel + .result-panel { margin-top:32px; padding-top:28px; }
   .result-intro { flex-direction:column; gap:10px; }
-  .result-intro h3 { font-size:21px; }
+  .result-intro h3 { font-size:24px; }
   .result-intro p { font-size:15px; }
   th,td { padding:13px; font-size:14px; }
   .simple-note { flex-direction:column; gap:5px; padding:10px 0; }

@@ -50,10 +50,12 @@ change the illustrative weight step size, inspect a token, and walk through the
 five stages of a training iteration. The numerical scores are explicitly
 illustrative; this component runs no language models or evaluations.
 
-`site.js` adds accessible result tabs and BibTeX copying. Without JavaScript, both
-result categories remain readable, the video works, and the method explanation
-has a static fallback. The supplied `Reward-Aligned Distillation.html` remains a
-local design reference and is preserved unchanged.
+The math and coding results appear sequentially, with complete model names in
+the summary cards and tables. `site.js` adds BibTeX copying. Without JavaScript,
+both result categories remain readable, the video works, and the method
+explanation has a static fallback. The supplied
+`Reward-Aligned Distillation.html` remains a local design reference and is
+preserved unchanged.
 
 The design takes inspiration from the research presentation at
 <https://self-distillation.github.io/SDPO> and
