@@ -42,8 +42,8 @@ meta responses. RAD uses 100 updates; baselines and RAD-Simple use 200. Math tab
 means average six benchmarks, while the math training curves average four.
 Standard deviations describe sampled response positions, not training seeds.
 
-Results appear in order: competition math, code generation, then learning
-dynamics. The native HTML tables group rows by complete student name, emphasize
+Results appear in order: competition math, math learning dynamics, then code
+generation. The native HTML tables group rows by complete student name, emphasize
 Mean/Overall and RAD rows, and preserve the paper's best/second-best score marks.
 The tables scroll horizontally on smaller screens with the Method column fixed;
 their explanatory notes remain readable below the scrolling area. The math

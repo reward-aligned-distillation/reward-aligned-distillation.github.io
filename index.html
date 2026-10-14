@@ -300,6 +300,10 @@
           </div>
           <p class="table-note" id="math-table-note">Accuracy (%), mean ± SD. Mean averages six benchmarks. Bold marks the best trained score; underlining marks the second-best, including ties. RAD family gain compares the higher RAD or RAD-Simple score with the best baseline (pp).</p>
         </article>
+        <article class="result-panel learning-dynamics" id="learning-dynamics" aria-labelledby="learning-title">
+          <div class="result-intro"><h3 id="learning-title">Learning dynamics</h3><p>Learning progress for RAD, RAD-Simple, and the compared methods.</p></div>
+          <figure class="paper-figure"><img src="assets/math-training.png" alt="Four-benchmark math learning curves comparing RAD, RAD-Simple, and baselines for Qwen3-1.7B (non-thinking) and Qwen3-4B-Instruct-2507." width="1680" height="816" loading="lazy"><figcaption>These curves average AIME24/25 and HMMT2025-Feb/Nov: four benchmarks. The main math table averages six. Checkpoints are shown as reported in the paper.</figcaption></figure>
+        </article>
         <article class="result-panel" id="coding-results" aria-labelledby="coding-title">
           <div class="result-intro"><h3 id="coding-title">Code generation</h3><p>LiveCodeBench-v6 pass@1 across 1,055 programming tasks: 322 easy, 383 medium, and 350 hard.</p><span class="protocol-tag">4 responses / task</span></div>
           <p class="result-takeaway">RAD outperforms all compared baselines across easy, medium, and hard tasks for both students.</p>
@@ -443,10 +447,6 @@
             </table>
           </div>
           <p class="table-note" id="coding-table-note">Pass@1 (%), mean ± SD. Bold marks the best trained score; underlining marks the second-best, including ties. RAD gain compares RAD with the best baseline (pp).</p>
-        </article>
-        <article class="result-panel learning-dynamics" id="learning-dynamics" aria-labelledby="learning-title">
-          <div class="result-intro"><h3 id="learning-title">Learning dynamics</h3><p>Learning progress for RAD, RAD-Simple, and the compared methods.</p></div>
-          <figure class="paper-figure"><img src="assets/math-training.png" alt="Four-benchmark math learning curves comparing RAD, RAD-Simple, and baselines for Qwen3-1.7B (non-thinking) and Qwen3-4B-Instruct-2507." width="1680" height="816" loading="lazy"><figcaption>These curves average AIME24/25 and HMMT2025-Feb/Nov: four benchmarks. The main math table averages six. Checkpoints are shown as reported in the paper.</figcaption></figure>
         </article>
         <details class="evaluation-details"><summary>Evaluation protocol</summary><div><p>Temperature 1, top-p 1, and a 32,768-token generation limit. Math uses 16 responses per problem and Math-Verify. Coding uses four responses per task, native LiveCodeBench grading, the training-question prompt format, and public starter code.</p></div></details>
       </section>
