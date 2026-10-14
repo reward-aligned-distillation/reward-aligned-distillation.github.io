@@ -39,9 +39,9 @@ video { display:block; width:100%; height:auto; aspect-ratio:16/9; }
 .video-caption { display:flex; justify-content:space-between; gap:20px; padding-top:13px; color:var(--muted); font-size:15.5px; }
 .video-caption p { margin:0; }
 .video-caption a { white-space:nowrap; }
-.section-heading { max-width:960px; margin-bottom:26px; }
+.section-heading { margin-bottom:26px; }
 .section-heading h2,.abstract-section h2,.citation-heading h2 { margin:0 0 14px; font-size:clamp(26px,3vw,34px); font-weight:650; line-height:1.25; letter-spacing:-.022em; }
-.section-heading > p:last-child { max-width:860px; margin:0; color:var(--muted); font-size:18px; }
+.section-heading > p:last-child { margin:0; color:var(--muted); font-size:18px; }
 .overview { padding-top:32px; }
 .takeaway { display:flex; align-items:flex-start; gap:15px; margin:0 0 26px; padding:0; }
 .takeaway-label { white-space:nowrap; color:var(--accent); font-size:15px; font-weight:750; padding-top:2px; }
