@@ -133,13 +133,6 @@ td small { color:var(--muted); font-size:10px; font-weight:400; }
 .evaluation-details summary { padding:15px 0; cursor:pointer; font-weight:650; }
 .evaluation-details > div { padding:0 0 14px 16px; color:var(--muted); }
 .evaluation-details p { max-width:960px; margin:7px 0; }
-.timing-table { max-width:850px; margin:auto; }
-.timing-table tbody th,.timing-table td { padding-block:12px; }
-.rad-row { color:var(--accent); background:#fdf3ef; font-weight:700; }
-.table-note { max-width:850px; margin:13px auto 0; color:var(--muted); font-size:10px; }
-.efficiency-takeaway { display:grid; grid-template-columns:1fr 1fr; gap:28px; max-width:850px; margin:23px auto 0; }
-.efficiency-takeaway p { margin:0; color:var(--muted); font-size:12px; }
-.efficiency-takeaway strong { color:var(--ink); }
 .abstract-section { padding-block:86px 64px; }
 .abstract-section > p:not(.eyebrow) { color:var(--muted); font-size:15px; line-height:1.8; }
 .text-link { display:inline-flex; align-items:center; gap:15px; margin-top:9px; color:var(--accent); font-size:13px; font-weight:650; }
@@ -220,8 +213,6 @@ td small { color:var(--muted); font-size:10px; font-weight:400; }
   .simple-note { flex-direction:column; gap:5px; padding:15px; }
   .simple-note p { font-size:11px; }
   .evaluation-details { font-size:11px; }
-  .efficiency-takeaway { grid-template-columns:1fr; gap:12px; }
-  .efficiency-takeaway p { font-size:11px; }
   .abstract-section > p:not(.eyebrow) { font-size:13px; }
   .citation-heading { gap:10px; }
   .citation-heading h2 { font-size:26px; }

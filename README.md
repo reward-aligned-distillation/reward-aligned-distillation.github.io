@@ -19,7 +19,7 @@ Open `http://localhost:8000`. Stop the server with Ctrl+C.
 
 ## Content and provenance
 
-The displayed scores match Tables 1, 8, and 11 of arXiv:2610.14572v1 and the
+The displayed scores match Tables 1 and 8 of arXiv:2610.14572v1 and the
 current paper snapshots in the parent RAD research checkout. The source paths
 below are relative to that research checkout; the manuscript is not bundled in
 this standalone website repository.
@@ -37,8 +37,6 @@ The main comparison counts 102,400 generated training responses, including RAD's
 meta responses. RAD uses 100 updates; baselines and RAD-Simple use 200. Math table
 means average six benchmarks, while the math training curves average four.
 Standard deviations describe sampled response positions, not training seeds.
-Timing totals include checkpoint saves and exclude validation, startup, and
-downtime; ExOPD's math total is a lower bound with one missing step timer.
 
 The explainer video is H.264/AAC, 1920×1080, about 3:02, with fast-start MP4
 metadata. The player uses native controls, inline playback, metadata preloading,
