@@ -59,61 +59,396 @@
         <a class="text-link" href="https://arxiv.org/abs/2610.14572" target="_blank" rel="noopener noreferrer">Read the full paper on arXiv <span aria-hidden="true">↗</span></a>
       </section>
 
-      <section class="overview section wrap" aria-labelledby="overview-title">
+      <section class="method-section section wrap" id="method" aria-labelledby="overview-title">
         <div class="section-heading">
           <h2 id="overview-title">Which teacher signals actually improve reward?</h2>
           <p>On-policy distillation provides a learning signal at every token. RAD uses the student’s predicted post-update reward to decide how to weight that supervision.</p>
         </div>
         <div class="takeaway"><span class="takeaway-label">The idea</span><p>Take a temporary student update. Measure each token’s reward sensitivity. Use those scores to strengthen, suppress, or reverse its distillation contribution.</p></div>
-        <figure class="paper-figure overview-figure">
-          <img src="assets/main-results.png" alt="RAD's main paper results: Qwen3-1.7B (non-thinking) improves on competition math and coding. Coding pass@1 is 54.69% for Qwen3-1.7B (non-thinking) and 58.67% for OLMo3-7B-Instruct." width="1580" height="697" loading="lazy">
-          <figcaption><strong>Results across tasks and model families.</strong> RAD at 100 updates versus baselines at 200, at the matched training-response budget. Panel (a): Qwen3-1.7B (non-thinking) math and coding. Panel (b): LiveCodeBench-v6 for Qwen3-1.7B (non-thinking) and OLMo3-7B-Instruct, with their respective teacher references.</figcaption>
-        </figure>
-      </section>
-
-      <section class="method-section section band" id="method" aria-labelledby="method-title">
-        <div class="wrap">
-          <div class="section-heading">
-            <h2 id="method-title">A different weight for every learning signal</h2>
-            <p>Compare uniform OPD with RAD. Move the slider, inspect a token, or walk through one training iteration.</p>
-          </div>
-          <div class="method-lab" id="rad-method">
-            <p>RAD takes a temporary optimizer step, scores token supervision by its effect on post-update reward, and commits an update with projected token weights.</p>
-            <p>For the illustrated zero-origin setting: w<sub>t</sub> = clip(γI<sub>t</sub>, −1, +1).</p>
-            <noscript><p>Enable JavaScript to explore token weights and the five stages interactively. The explanation and all measured results remain available on this page.</p></noscript>
-          </div>
-          <p class="method-bottom-note">The temporary update is discarded. The real update starts from the original student parameters and optimizer state.</p>
+        <h3 class="method-subheading" id="method-title">A different weight for every learning signal</h3>
+        <p class="method-instructions">Compare uniform OPD with RAD. Move the slider, inspect a token, or walk through one training iteration.</p>
+        <div class="method-lab" id="rad-method">
+          <p>RAD takes a temporary optimizer step, scores token supervision by its effect on post-update reward, and commits an update with projected token weights.</p>
+          <p>For the illustrated zero-origin setting: w<sub>t</sub> = clip(γI<sub>t</sub>, −1, +1).</p>
+          <noscript><p>Enable JavaScript to explore token weights and the five stages interactively. The explanation and all measured results remain available on this page.</p></noscript>
         </div>
+        <p class="method-bottom-note">The temporary update is discarded. The real update starts from the original student parameters and optimizer state.</p>
       </section>
 
       <section class="results-section section wrap" id="results" aria-labelledby="results-title">
         <div class="section-heading">
-          <h2 id="results-title">Better reasoning at the same response budget</h2>
-          <p>Gains over the strongest compared baseline, using 102,400 generated training responses—including RAD’s meta responses.</p>
+          <h2 id="results-title">Results</h2>
+          <p>Comparisons use 102,400 generated training responses, including RAD’s meta responses. RAD uses 100 updates; baselines and RAD-Simple use 200.</p>
         </div>
-        <div class="metrics">
-          <article class="metric"><p class="metric-domain">Competition math</p><p class="metric-value">+6.48<span>pp</span></p><h3>Qwen3-1.7B (non-thinking)</h3><p>Six-benchmark mean</p></article>
-          <article class="metric"><p class="metric-domain">Competition math</p><p class="metric-value">+2.51<span>pp</span></p><h3>Qwen3-4B-Instruct-2507</h3><p>Six-benchmark mean</p></article>
-          <article class="metric"><p class="metric-domain">LiveCodeBench-v6</p><p class="metric-value">+8.72<span>pp</span></p><h3>Qwen3-1.7B (non-thinking)</h3><p>Pass@1</p></article>
-          <article class="metric"><p class="metric-domain">LiveCodeBench-v6</p><p class="metric-value">+6.40<span>pp</span></p><h3>OLMo3-7B-Instruct</h3><p>Pass@1</p></article>
-        </div>
-
         <article class="result-panel" id="math-results" aria-labelledby="math-title">
           <div class="result-intro"><h3 id="math-title">Competition math</h3><p>Mean accuracy across six benchmarks: AIME24, AIME25, AIME26, HMMT2025-Feb, HMMT2025-Nov, and OlympiadBench.</p><span class="protocol-tag">16 responses / problem</span></div>
-          <div class="table-scroll" tabindex="0" role="region" aria-label="Math results table">
-            <table><caption>Mean accuracy (%), with sampled-response-position standard deviation.</caption><thead><tr><th scope="col">Student</th><th scope="col">Best baseline · 200 updates</th><th scope="col">RAD · 100 updates</th><th scope="col">RAD gain</th></tr></thead><tbody><tr><th scope="row">Qwen3-1.7B (non-thinking)</th><td><span class="table-method">ExOPD</span>32.59 <small>± 1.81</small></td><td class="rad-cell">39.07 <small>± 1.59</small></td><td class="gain-cell">+6.48 pp</td></tr><tr><th scope="row">Qwen3-4B-Instruct-2507</th><td><span class="table-method">GRPO</span>57.29 <small>± 1.72</small></td><td class="rad-cell">59.80 <small>± 2.07</small></td><td class="gain-cell">+2.51 pp</td></tr></tbody></table>
+          <p class="result-takeaway">RAD and RAD-Simple outperform all compared baselines on the six-benchmark mean for both students.</p>
+          <div class="table-scroll" tabindex="0" aria-describedby="math-table-note" role="region" aria-label="Full competition mathematics results">
+            <table class="results-table math-table">
+              <caption class="visually-hidden">Competition math accuracy (%)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Method</th>
+                  <th scope="col">AIME24</th>
+                  <th scope="col">AIME25</th>
+                  <th scope="col">AIME26</th>
+                  <th scope="col">HMMT2025-Feb</th>
+                  <th scope="col">HMMT2025-Nov</th>
+                  <th scope="col">OlympiadBench</th>
+                  <th scope="col" class="aggregate-col">Mean</th>
+                </tr>
+              </thead>
+              <tbody aria-label="Shared math teacher reference">
+                <tr class="reference-row">
+                  <th scope="row">Teacher</th>
+                  <td><span class="score-mean">74.79</span> <small class="score-std">± 3.72</small></td>
+                  <td><span class="score-mean">61.46</span> <small class="score-std">± 3.53</small></td>
+                  <td><span class="score-mean">74.79</span> <small class="score-std">± 4.56</small></td>
+                  <td><span class="score-mean">43.75</span> <small class="score-std">± 5.38</small></td>
+                  <td><span class="score-mean">59.17</span> <small class="score-std">± 5.59</small></td>
+                  <td><span class="score-mean">77.15</span> <small class="score-std">± 0.52</small></td>
+                  <td class="aggregate-col"><span class="score-mean">65.18</span> <small class="score-std">± 1.66</small></td>
+                </tr>
+              </tbody>
+              <tbody aria-labelledby="math-qwen17-group">
+                <tr class="model-group"><th colspan="8" scope="rowgroup" id="math-qwen17-group"><span class="model-name">Student: Qwen3-1.7B (non-thinking)</span></th></tr>
+                <tr class="reference-row">
+                  <th scope="row">Base</th>
+                  <td><span class="score-mean">12.08</span> <small class="score-std">± 3.89</small></td>
+                  <td><span class="score-mean">11.04</span> <small class="score-std">± 4.20</small></td>
+                  <td><span class="score-mean">8.13</span> <small class="score-std">± 2.63</small></td>
+                  <td><span class="score-mean">6.04</span> <small class="score-std">± 3.38</small></td>
+                  <td><span class="score-mean">3.75</span> <small class="score-std">± 2.00</small></td>
+                  <td><span class="score-mean">39.30</span> <small class="score-std">± 0.82</small></td>
+                  <td class="aggregate-col"><span class="score-mean">13.39</span> <small class="score-std">± 1.49</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">GRPO</th>
+                  <td><span class="score-mean">29.58</span> <small class="score-std">± 5.64</small></td>
+                  <td><span class="score-mean">19.58</span> <small class="score-std">± 3.89</small></td>
+                  <td><span class="score-mean">18.96</span> <small class="score-std">± 5.98</small></td>
+                  <td><span class="score-mean">15.63</span> <small class="score-std">± 2.82</small></td>
+                  <td><span class="score-mean">10.21</span> <small class="score-std">± 4.93</small></td>
+                  <td><span class="score-mean">53.07</span> <small class="score-std">± 0.93</small></td>
+                  <td class="aggregate-col"><span class="score-mean">24.51</span> <small class="score-std">± 1.46</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">OPD</th>
+                  <td><span class="score-mean">40.00</span> <small class="score-std">± 5.65</small></td>
+                  <td><span class="score-mean">27.29</span> <small class="score-std">± 4.44</small></td>
+                  <td><span class="score-mean">26.46</span> <small class="score-std">± 5.83</small></td>
+                  <td><span class="score-mean">17.71</span> <small class="score-std">± 3.67</small></td>
+                  <td><span class="score-mean">16.67</span> <small class="score-std">± 6.24</small></td>
+                  <td><span class="score-mean">58.19</span> <small class="score-std">± 1.17</small></td>
+                  <td class="aggregate-col"><span class="score-mean">31.05</span> <small class="score-std">± 2.01</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">TIP</th>
+                  <td><span class="score-mean">39.17</span> <small class="score-std">± 4.93</small></td>
+                  <td><span class="score-mean">28.54</span> <small class="score-std">± 4.40</small></td>
+                  <td><span class="score-mean">31.04</span> <small class="score-std">± 5.98</small></td>
+                  <td><span class="score-mean">17.08</span> <small class="score-std">± 3.09</small></td>
+                  <td><span class="score-mean">18.33</span> <small class="score-std">± 4.08</small></td>
+                  <td><span class="score-mean">57.93</span> <small class="score-std">± 1.18</small></td>
+                  <td class="aggregate-col"><span class="score-mean">32.02</span> <small class="score-std">± 1.70</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">RLAD</th>
+                  <td><span class="score-mean">35.21</span> <small class="score-std">± 4.08</small></td>
+                  <td><span class="score-mean">27.71</span> <small class="score-std">± 4.20</small></td>
+                  <td><span class="score-mean">26.04</span> <small class="score-std">± 6.89</small></td>
+                  <td><span class="score-mean">16.88</span> <small class="score-std">± 3.43</small></td>
+                  <td><span class="score-mean">17.08</span> <small class="score-std">± 4.55</small></td>
+                  <td><span class="score-mean">58.06</span> <small class="score-std">± 1.27</small></td>
+                  <td class="aggregate-col"><span class="score-mean">30.16</span> <small class="score-std">± 1.58</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">ExOPD</th>
+                  <td><span class="score-mean">36.88</span> <small class="score-std">± 4.33</small></td>
+                  <td><span class="score-mean">31.67</span> <small class="score-std">± 4.08</small></td>
+                  <td><span class="score-mean">31.25</span> <small class="score-std">± 5.51</small></td>
+                  <td><span class="score-mean">16.67</span> <small class="score-std">± 2.89</small></td>
+                  <td><span class="score-mean">19.38</span> <small class="score-std">± 5.43</small></td>
+                  <td><span class="score-mean">59.69</span> <small class="score-std">± 1.12</small></td>
+                  <td class="aggregate-col"><span class="score-mean">32.59</span> <small class="score-std">± 1.81</small></td>
+                </tr>
+                <tr class="rad-row">
+                  <th scope="row">RAD</th>
+                  <td><span class="score-mean"><strong>47.50</strong></span> <small class="score-std">± 7.41</small></td>
+                  <td><span class="score-mean"><strong>36.04</strong></span> <small class="score-std">± 3.58</small></td>
+                  <td><span class="score-mean"><strong>38.96</strong></span> <small class="score-std">± 3.86</small></td>
+                  <td><span class="score-mean"><strong>22.50</strong></span> <small class="score-std">± 4.17</small></td>
+                  <td><span class="score-mean"><strong>24.79</strong></span> <small class="score-std">± 4.08</small></td>
+                  <td><span class="score-mean"><strong>64.60</strong></span> <small class="score-std">± 1.05</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><strong>39.07</strong></span> <small class="score-std">± 1.59</small></td>
+                </tr>
+                <tr class="rad-row">
+                  <th scope="row">RAD-Simple</th>
+                  <td><span class="score-mean"><span class="second-best">46.88</span></span> <small class="score-std">± 5.83</small></td>
+                  <td><span class="score-mean"><span class="second-best">34.58</span></span> <small class="score-std">± 5.64</small></td>
+                  <td><span class="score-mean"><span class="second-best">38.54</span></span> <small class="score-std">± 5.27</small></td>
+                  <td><span class="score-mean"><span class="second-best">21.67</span></span> <small class="score-std">± 3.54</small></td>
+                  <td><span class="score-mean"><span class="second-best">24.38</span></span> <small class="score-std">± 3.05</small></td>
+                  <td><span class="score-mean"><span class="second-best">64.47</span></span> <small class="score-std">± 1.07</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><span class="second-best">38.42</span></span> <small class="score-std">± 1.70</small></td>
+                </tr>
+                <tr class="gain-row">
+                  <th scope="row">RAD family gain</th>
+                  <td><span class="score-mean">+7.50</span></td>
+                  <td><span class="score-mean">+4.38</span></td>
+                  <td><span class="score-mean">+7.71</span></td>
+                  <td><span class="score-mean">+4.79</span></td>
+                  <td><span class="score-mean">+5.42</span></td>
+                  <td><span class="score-mean">+4.92</span></td>
+                  <td class="aggregate-col"><span class="score-mean">+6.48</span></td>
+                </tr>
+              </tbody>
+              <tbody aria-labelledby="math-qwen4-group">
+                <tr class="model-group"><th colspan="8" scope="rowgroup" id="math-qwen4-group"><span class="model-name">Student: Qwen3-4B-Instruct-2507</span></th></tr>
+                <tr class="reference-row">
+                  <th scope="row">Base</th>
+                  <td><span class="score-mean">64.17</span> <small class="score-std">± 5.95</small></td>
+                  <td><span class="score-mean">48.33</span> <small class="score-std">± 5.53</small></td>
+                  <td><span class="score-mean">53.13</span> <small class="score-std">± 5.46</small></td>
+                  <td><span class="score-mean">32.29</span> <small class="score-std">± 4.52</small></td>
+                  <td><span class="score-mean">44.58</span> <small class="score-std">± 4.06</small></td>
+                  <td><span class="score-mean">71.77</span> <small class="score-std">± 0.96</small></td>
+                  <td class="aggregate-col"><span class="score-mean">52.38</span> <small class="score-std">± 1.47</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">GRPO</th>
+                  <td><span class="score-mean">67.92</span> <small class="score-std">± 6.44</small></td>
+                  <td><span class="score-mean">55.63</span> <small class="score-std">± 3.67</small></td>
+                  <td><span class="score-mean"><span class="second-best">62.29</span></span> <small class="score-std">± 4.52</small></td>
+                  <td><span class="score-mean">34.58</span> <small class="score-std">± 3.51</small></td>
+                  <td><span class="score-mean">48.75</span> <small class="score-std">± 5.38</small></td>
+                  <td><span class="score-mean">74.58</span> <small class="score-std">± 0.84</small></td>
+                  <td class="aggregate-col"><span class="score-mean">57.29</span> <small class="score-std">± 1.72</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">OPD</th>
+                  <td><span class="score-mean">65.21</span> <small class="score-std">± 6.23</small></td>
+                  <td><span class="score-mean">50.63</span> <small class="score-std">± 4.60</small></td>
+                  <td><span class="score-mean">55.42</span> <small class="score-std">± 5.25</small></td>
+                  <td><span class="score-mean">33.96</span> <small class="score-std">± 3.95</small></td>
+                  <td><span class="score-mean">41.46</span> <small class="score-std">± 5.00</small></td>
+                  <td><span class="score-mean">71.89</span> <small class="score-std">± 0.74</small></td>
+                  <td class="aggregate-col"><span class="score-mean">53.09</span> <small class="score-std">± 1.72</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">TIP</th>
+                  <td><span class="score-mean">61.04</span> <small class="score-std">± 4.82</small></td>
+                  <td><span class="score-mean">49.79</span> <small class="score-std">± 5.71</small></td>
+                  <td><span class="score-mean">53.96</span> <small class="score-std">± 6.79</small></td>
+                  <td><span class="score-mean">33.96</span> <small class="score-std">± 4.44</small></td>
+                  <td><span class="score-mean">41.04</span> <small class="score-std">± 6.09</small></td>
+                  <td><span class="score-mean">71.77</span> <small class="score-std">± 0.83</small></td>
+                  <td class="aggregate-col"><span class="score-mean">51.93</span> <small class="score-std">± 1.85</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">RLAD</th>
+                  <td><span class="score-mean">59.79</span> <small class="score-std">± 5.06</small></td>
+                  <td><span class="score-mean">47.71</span> <small class="score-std">± 4.96</small></td>
+                  <td><span class="score-mean">53.33</span> <small class="score-std">± 6.12</small></td>
+                  <td><span class="score-mean">32.29</span> <small class="score-std">± 4.67</small></td>
+                  <td><span class="score-mean">39.58</span> <small class="score-std">± 5.64</small></td>
+                  <td><span class="score-mean">72.50</span> <small class="score-std">± 0.93</small></td>
+                  <td class="aggregate-col"><span class="score-mean">50.87</span> <small class="score-std">± 1.60</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">ExOPD</th>
+                  <td><span class="score-mean">58.13</span> <small class="score-std">± 5.13</small></td>
+                  <td><span class="score-mean">50.42</span> <small class="score-std">± 3.51</small></td>
+                  <td><span class="score-mean">55.21</span> <small class="score-std">± 5.52</small></td>
+                  <td><span class="score-mean">33.33</span> <small class="score-std">± 4.08</small></td>
+                  <td><span class="score-mean">40.63</span> <small class="score-std">± 5.17</small></td>
+                  <td><span class="score-mean">71.26</span> <small class="score-std">± 0.92</small></td>
+                  <td class="aggregate-col"><span class="score-mean">51.49</span> <small class="score-std">± 2.02</small></td>
+                </tr>
+                <tr class="rad-row">
+                  <th scope="row">RAD</th>
+                  <td><span class="score-mean"><span class="second-best">71.25</span></span> <small class="score-std">± 5.51</small></td>
+                  <td><span class="score-mean"><strong>62.50</strong></span> <small class="score-std">± 3.63</small></td>
+                  <td><span class="score-mean"><span class="second-best">62.29</span></span> <small class="score-std">± 5.23</small></td>
+                  <td><span class="score-mean"><span class="second-best">36.04</span></span> <small class="score-std">± 5.30</small></td>
+                  <td><span class="score-mean"><span class="second-best">51.25</span></span> <small class="score-std">± 5.12</small></td>
+                  <td><span class="score-mean"><span class="second-best">75.46</span></span> <small class="score-std">± 0.87</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><span class="second-best">59.80</span></span> <small class="score-std">± 2.07</small></td>
+                </tr>
+                <tr class="rad-row">
+                  <th scope="row">RAD-Simple</th>
+                  <td><span class="score-mean"><strong>71.88</strong></span> <small class="score-std">± 5.13</small></td>
+                  <td><span class="score-mean"><span class="second-best">60.63</span></span> <small class="score-std">± 3.77</small></td>
+                  <td><span class="score-mean"><strong>63.96</strong></span> <small class="score-std">± 5.17</small></td>
+                  <td><span class="score-mean"><strong>40.00</strong></span> <small class="score-std">± 4.41</small></td>
+                  <td><span class="score-mean"><strong>52.29</strong></span> <small class="score-std">± 5.36</small></td>
+                  <td><span class="score-mean"><strong>76.30</strong></span> <small class="score-std">± 0.79</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><strong>60.84</strong></span> <small class="score-std">± 1.50</small></td>
+                </tr>
+                <tr class="gain-row">
+                  <th scope="row">RAD family gain</th>
+                  <td><span class="score-mean">+3.96</span></td>
+                  <td><span class="score-mean">+6.88</span></td>
+                  <td><span class="score-mean">+1.67</span></td>
+                  <td><span class="score-mean">+5.42</span></td>
+                  <td><span class="score-mean">+3.54</span></td>
+                  <td><span class="score-mean">+1.71</span></td>
+                  <td class="aggregate-col"><span class="score-mean">+3.55</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <div class="simple-note"><span class="simple-badge">RAD-Simple</span><p>A variant that removes the temporary update and reuses distillation rollouts. At the same response budget, its 200-update math means are <strong>38.42%</strong> for the 1.7B student and <strong>60.84%</strong> for the 4B student.</p></div>
-          <figure class="paper-figure"><img src="assets/math-training.png" alt="Four-benchmark math learning curves comparing RAD, RAD-Simple, and baselines for Qwen3-1.7B (non-thinking) and Qwen3-4B-Instruct-2507." width="1680" height="816" loading="lazy"><figcaption><strong>Learning dynamics.</strong> These curves average AIME24/25 and HMMT2025-Feb/Nov: four benchmarks. The headline table above averages six. Checkpoints are shown as reported in the paper.</figcaption></figure>
+          <p class="table-note" id="math-table-note">Accuracy (%), mean ± SD. Mean averages six benchmarks. Bold marks the best trained score; underlining marks the second-best, including ties. RAD family gain compares the higher RAD or RAD-Simple score with the best baseline (pp).</p>
         </article>
         <article class="result-panel" id="coding-results" aria-labelledby="coding-title">
           <div class="result-intro"><h3 id="coding-title">Code generation</h3><p>LiveCodeBench-v6 pass@1 across 1,055 programming tasks: 322 easy, 383 medium, and 350 hard.</p><span class="protocol-tag">4 responses / task</span></div>
-          <div class="table-scroll" tabindex="0" role="region" aria-label="Coding results table">
-            <table><caption>Pass@1 (%), with sampled-response-position standard deviation.</caption><thead><tr><th scope="col">Student</th><th scope="col">Best baseline · 200 updates</th><th scope="col">RAD · 100 updates</th><th scope="col">RAD gain</th></tr></thead><tbody><tr><th scope="row">Qwen3-1.7B (non-thinking)</th><td><span class="table-method">RLAD</span>45.97 <small>± 0.26</small></td><td class="rad-cell">54.69 <small>± 0.31</small></td><td class="gain-cell">+8.72 pp</td></tr><tr><th scope="row">OLMo3-7B-Instruct</th><td><span class="table-method">GRPO</span>52.27 <small>± 0.26</small></td><td class="rad-cell">58.67 <small>± 0.52</small></td><td class="gain-cell">+6.40 pp</td></tr></tbody></table>
+          <p class="result-takeaway">RAD outperforms all compared baselines across easy, medium, and hard tasks for both students.</p>
+          <div class="table-scroll" tabindex="0" aria-describedby="coding-table-note" role="region" aria-label="Full LiveCodeBench-v6 results">
+            <table class="results-table coding-table">
+              <caption class="visually-hidden">LiveCodeBench-v6 pass@1 (%)</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Method</th>
+                  <th scope="col">Easy (322)</th>
+                  <th scope="col">Medium (383)</th>
+                  <th scope="col">Hard (350)</th>
+                  <th scope="col" class="aggregate-col">Overall (1,055)</th>
+                </tr>
+              </thead>
+              <tbody aria-labelledby="coding-qwen17-group">
+                <tr class="model-group"><th colspan="5" scope="rowgroup" id="coding-qwen17-group"><span class="model-name">Student: Qwen3-1.7B (non-thinking)</span></th></tr>
+                <tr class="reference-row">
+                  <th scope="row">Teacher</th>
+                  <td><span class="score-mean">96.27</span> <small class="score-std">± 0.79</small></td>
+                  <td><span class="score-mean">69.71</span> <small class="score-std">± 1.21</small></td>
+                  <td><span class="score-mean">26.07</span> <small class="score-std">± 0.24</small></td>
+                  <td class="aggregate-col"><span class="score-mean">63.34</span> <small class="score-std">± 0.38</small></td>
+                </tr>
+                <tr class="reference-row">
+                  <th scope="row">Base (student)</th>
+                  <td><span class="score-mean">60.02</span> <small class="score-std">± 1.17</small></td>
+                  <td><span class="score-mean">16.45</span> <small class="score-std">± 0.26</small></td>
+                  <td><span class="score-mean">1.79</span> <small class="score-std">± 0.71</small></td>
+                  <td class="aggregate-col"><span class="score-mean">24.88</span> <small class="score-std">± 0.35</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">GRPO</th>
+                  <td><span class="score-mean">66.07</span> <small class="score-std">± 2.64</small></td>
+                  <td><span class="score-mean">23.11</span> <small class="score-std">± 1.13</small></td>
+                  <td><span class="score-mean">4.07</span> <small class="score-std">± 0.47</small></td>
+                  <td class="aggregate-col"><span class="score-mean">29.91</span> <small class="score-std">± 1.14</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">OPD</th>
+                  <td><span class="score-mean">81.37</span> <small class="score-std">± 1.54</small></td>
+                  <td><span class="score-mean">41.38</span> <small class="score-std">± 1.40</small></td>
+                  <td><span class="score-mean">10.79</span> <small class="score-std">± 1.02</small></td>
+                  <td class="aggregate-col"><span class="score-mean">43.44</span> <small class="score-std">± 0.70</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">TIP</th>
+                  <td><span class="score-mean">82.69</span> <small class="score-std">± 1.08</small></td>
+                  <td><span class="score-mean">40.34</span> <small class="score-std">± 2.16</small></td>
+                  <td><span class="score-mean">9.71</span> <small class="score-std">± 0.90</small></td>
+                  <td class="aggregate-col"><span class="score-mean">43.10</span> <small class="score-std">± 0.52</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">RLAD</th>
+                  <td><span class="score-mean"><span class="second-best">85.56</span></span> <small class="score-std">± 1.55</small></td>
+                  <td><span class="score-mean"><span class="second-best">44.58</span></span> <small class="score-std">± 1.24</small></td>
+                  <td><span class="score-mean"><span class="second-best">11.07</span></span> <small class="score-std">± 0.62</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><span class="second-best">45.97</span></span> <small class="score-std">± 0.26</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">ExOPD</th>
+                  <td><span class="score-mean">78.88</span> <small class="score-std">± 0.58</small></td>
+                  <td><span class="score-mean">32.96</span> <small class="score-std">± 1.93</small></td>
+                  <td><span class="score-mean">6.29</span> <small class="score-std">± 0.70</small></td>
+                  <td class="aggregate-col"><span class="score-mean">38.13</span> <small class="score-std">± 0.52</small></td>
+                </tr>
+                <tr class="rad-row">
+                  <th scope="row">RAD</th>
+                  <td><span class="score-mean"><strong>88.90</strong></span> <small class="score-std">± 0.40</small></td>
+                  <td><span class="score-mean"><strong>57.11</strong></span> <small class="score-std">± 1.26</small></td>
+                  <td><span class="score-mean"><strong>20.57</strong></span> <small class="score-std">± 0.35</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><strong>54.69</strong></span> <small class="score-std">± 0.31</small></td>
+                </tr>
+                <tr class="gain-row">
+                  <th scope="row">RAD gain</th>
+                  <td><span class="score-mean">+3.34</span></td>
+                  <td><span class="score-mean">+12.53</span></td>
+                  <td><span class="score-mean">+9.50</span></td>
+                  <td class="aggregate-col"><span class="score-mean">+8.72</span></td>
+                </tr>
+              </tbody>
+              <tbody aria-labelledby="coding-olmo7-group">
+                <tr class="model-group"><th colspan="5" scope="rowgroup" id="coding-olmo7-group"><span class="model-name">Student: OLMo3-7B-Instruct</span></th></tr>
+                <tr class="reference-row">
+                  <th scope="row">Teacher</th>
+                  <td><span class="score-mean">89.36</span> <small class="score-std">± 1.41</small></td>
+                  <td><span class="score-mean">64.23</span> <small class="score-std">± 1.86</small></td>
+                  <td><span class="score-mean">28.86</span> <small class="score-std">± 0.97</small></td>
+                  <td class="aggregate-col"><span class="score-mean">60.17</span> <small class="score-std">± 0.98</small></td>
+                </tr>
+                <tr class="reference-row">
+                  <th scope="row">Base (student)</th>
+                  <td><span class="score-mean">76.09</span> <small class="score-std">± 1.58</small></td>
+                  <td><span class="score-mean">43.41</span> <small class="score-std">± 2.31</small></td>
+                  <td><span class="score-mean">14.86</span> <small class="score-std">± 1.73</small></td>
+                  <td class="aggregate-col"><span class="score-mean">43.91</span> <small class="score-std">± 1.50</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">GRPO</th>
+                  <td><span class="score-mean">84.55</span> <small class="score-std">± 0.89</small></td>
+                  <td><span class="score-mean"><span class="second-best">54.11</span></span> <small class="score-std">± 1.49</small></td>
+                  <td><span class="score-mean"><span class="second-best">20.57</span></span> <small class="score-std">± 0.73</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><span class="second-best">52.27</span></span> <small class="score-std">± 0.26</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">OPD</th>
+                  <td><span class="score-mean">69.25</span> <small class="score-std">± 3.10</small></td>
+                  <td><span class="score-mean">48.69</span> <small class="score-std">± 1.17</small></td>
+                  <td><span class="score-mean">18.43</span> <small class="score-std">± 1.77</small></td>
+                  <td class="aggregate-col"><span class="score-mean">44.93</span> <small class="score-std">± 1.36</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">TIP</th>
+                  <td><span class="score-mean">53.49</span> <small class="score-std">± 0.83</small></td>
+                  <td><span class="score-mean">40.86</span> <small class="score-std">± 1.30</small></td>
+                  <td><span class="score-mean">16.79</span> <small class="score-std">± 1.02</small></td>
+                  <td class="aggregate-col"><span class="score-mean">36.73</span> <small class="score-std">± 0.37</small></td>
+                </tr>
+                <tr>
+                  <th scope="row">RLAD</th>
+                  <td><span class="score-mean"><span class="second-best">84.70</span></span> <small class="score-std">± 2.30</small></td>
+                  <td><span class="score-mean">53.92</span> <small class="score-std">± 0.54</small></td>
+                  <td><span class="score-mean">16.57</span> <small class="score-std">± 0.70</small></td>
+                  <td class="aggregate-col"><span class="score-mean">50.92</span> <small class="score-std">± 0.91</small></td>
+                </tr>
+                <tr class="rad-row">
+                  <th scope="row">RAD</th>
+                  <td><span class="score-mean"><strong>89.67</strong></span> <small class="score-std">± 1.86</small></td>
+                  <td><span class="score-mean"><strong>63.51</strong></span> <small class="score-std">± 0.34</small></td>
+                  <td><span class="score-mean"><strong>24.86</strong></span> <small class="score-std">± 1.50</small></td>
+                  <td class="aggregate-col"><span class="score-mean"><strong>58.67</strong></span> <small class="score-std">± 0.52</small></td>
+                </tr>
+                <tr class="gain-row">
+                  <th scope="row">RAD gain</th>
+                  <td><span class="score-mean">+4.97</span></td>
+                  <td><span class="score-mean">+9.40</span></td>
+                  <td><span class="score-mean">+4.29</span></td>
+                  <td class="aggregate-col"><span class="score-mean">+6.40</span></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <figure class="paper-figure"><img src="assets/coding-results.png" alt="Coding accuracy by Easy, Medium, Hard, and Overall difficulty for Qwen3-1.7B (non-thinking) and OLMo3-7B-Instruct, comparing RAD with GRPO, OPD, TIP, RLAD, and available ExOPD results." width="1572" height="638" loading="lazy"><figcaption><strong>Gains across difficulty levels.</strong> RAD at 100 updates; baselines at 200. Each student uses its respective teacher. The chart and table use the paper’s native LiveCodeBench grading and the same checkpoint selections.</figcaption></figure>
+          <p class="table-note" id="coding-table-note">Pass@1 (%), mean ± SD. Bold marks the best trained score; underlining marks the second-best, including ties. RAD gain compares RAD with the best baseline (pp).</p>
         </article>
-        <details class="evaluation-details"><summary>How to read these comparisons</summary><div><p><strong>Training budget.</strong> RAD uses 100 updates; baselines and RAD-Simple use 200. The matched budget counts generated training responses, including RAD’s meta responses.</p><p><strong>Sampling.</strong> Temperature 1, top-p 1, and a 32,768-token generation limit. Math uses 16 responses per problem and Math-Verify. Coding uses four responses per task, native LiveCodeBench grading, the training-question prompt format, and public starter code.</p></div></details>
+        <article class="result-panel learning-dynamics" id="learning-dynamics" aria-labelledby="learning-title">
+          <div class="result-intro"><h3 id="learning-title">Learning dynamics</h3><p>Learning progress for RAD, RAD-Simple, and the compared methods.</p></div>
+          <figure class="paper-figure"><img src="assets/math-training.png" alt="Four-benchmark math learning curves comparing RAD, RAD-Simple, and baselines for Qwen3-1.7B (non-thinking) and Qwen3-4B-Instruct-2507." width="1680" height="816" loading="lazy"><figcaption>These curves average AIME24/25 and HMMT2025-Feb/Nov: four benchmarks. The main math table averages six. Checkpoints are shown as reported in the paper.</figcaption></figure>
+        </article>
+        <details class="evaluation-details"><summary>Evaluation protocol</summary><div><p>Temperature 1, top-p 1, and a 32,768-token generation limit. Math uses 16 responses per problem and Math-Verify. Coding uses four responses per task, native LiveCodeBench grading, the training-question prompt format, and public starter code.</p></div></details>
       </section>
 
       <section class="citation-section section wrap" id="citation" aria-labelledby="citation-title"><div class="citation-heading"><h2 id="citation-title">BibTeX</h2><button type="button" class="copy-button" id="copy-citation" aria-live="polite">Copy BibTeX</button></div><pre class="citation"><code id="bibtex">@misc{chen2026rewardaligneddistillation,

@@ -19,15 +19,19 @@ Open `http://localhost:8000`. Stop the server with Ctrl+C.
 
 ## Content and provenance
 
-The displayed scores match Tables 1 and 8 of arXiv:2610.14572v1 and the
-current paper snapshots in the parent RAD research checkout. The source paths
-below are relative to that research checkout; the manuscript is not bundled in
-this standalone website repository.
+The main math and coding accuracy tables reproduce Tables 1 and 8 of
+arXiv:2610.14572v1 and the current paper snapshots in the parent RAD research
+checkout. They include all reported methods, teacher and base references,
+RAD-Simple's math results, and per-column gains. The source paths below are
+relative to that research checkout; the manuscript is not bundled in this
+standalone website repository.
 
 The displayed author order and BibTeX follow the paper PDF.
 
 | Website asset | Original source |
 | --- | --- |
+| Math accuracy table in `index.html` | `paper/tables/math_results.tex` (accuracy columns) |
+| Coding accuracy table in `index.html` | `paper/tables/coding_results.tex` |
 | `assets/main-results.png` | `paper/figures/paper/main_results_overview_current.png` |
 | `assets/math-training.png` | `paper/figures/paper/math_eval_dynamics.png` |
 | `assets/coding-results.png` | `paper/figures/paper/coding_results_bars.png` |
@@ -37,6 +41,16 @@ The main comparison counts 102,400 generated training responses, including RAD's
 meta responses. RAD uses 100 updates; baselines and RAD-Simple use 200. Math table
 means average six benchmarks, while the math training curves average four.
 Standard deviations describe sampled response positions, not training seeds.
+
+Results appear in order: competition math, code generation, then learning
+dynamics. The native HTML tables group rows by complete student name, emphasize
+Mean/Overall and RAD rows, and preserve the paper's best/second-best score marks.
+The tables scroll horizontally on smaller screens with the Method column fixed;
+their explanatory notes remain readable below the scrolling area. The math
+table focuses on accuracy and omits the training-time column.
+
+The overview and coding chart assets are retained for provenance. The overview
+chart remains the social preview image; neither chart is rendered in the page.
 
 The explainer video is H.264/AAC, 1920×1080, about 3:02, with fast-start MP4
 metadata. The player uses native controls, inline playback, metadata preloading,
@@ -50,10 +64,10 @@ change the illustrative weight step size, inspect a token, and walk through the
 five stages of a training iteration. The numerical scores are explicitly
 illustrative; this component runs no language models or evaluations.
 
-The math and coding results appear sequentially, with complete model names in
-the summary cards and tables. `site.js` adds BibTeX copying. Without JavaScript,
-both result categories remain readable, the video works, and the method
-explanation has a static fallback. The supplied
+The method explanation and interactive illustration form one section before
+Results. `site.js` adds BibTeX copying. Without JavaScript, both result tables
+remain readable, the video works, and the method explanation has a static
+fallback. The supplied
 `Reward-Aligned Distillation.html` remains a local design reference and is
 preserved unchanged.
 
